@@ -1,4 +1,7 @@
 # 🌍 IA sin Fronteras
+
+![Portada de IA sin Fronteras](portada.png)
+
 Este es el inicio de un proyecto ambicioso para democratizar el acceso a la Inteligencia Artificial.
 
 ### 🚀 Objetivo
