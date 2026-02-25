@@ -1,18 +1,30 @@
+# -*- coding: utf-8 -*-
 from textblob import TextBlob
+from googletrans import Translator
 
-print("--- Analizador de Sentimientos IA ---")
-frase = input("¿Cómo te sientes hoy? (Escríbelo en inglés para esta prueba): ")
+# Inicializamos el traductor
+traductor = Translator()
 
-# La IA analiza la frase
-analisis = TextBlob(frase)
+print("--- IA sin Fronteras: Analizador Multilingue ---")
+frase_original = input("Como te sientes hoy? (Cualquier idioma): ")
+
+# 1. Traduccion interna
+traduccion = traductor.translate(frase_original, dest='en')
+frase_en_ingles = traduccion.text
+
+# 2. Analisis de la IA
+analisis = TextBlob(frase_en_ingles)
 sentimiento = analisis.sentiment.polarity
 
-# Interpretación de los resultados
-if sentimiento > 0:
-    print("🤖 IA: ¡Detecto mucha positividad en tus palabras!")
-elif sentimiento < 0:
-    print("🤖 IA: Parece que algo no va bien. ¡Ánimo!")
-else:
-    print("🤖 IA: Te noto neutral.")
+# 3. Resultados
+print(f"Idioma detectado: {traduccion.src.upper()}")
+print(f"IA (Traduccion): {frase_en_ingles}")
 
-print(f"Puntuación de la IA: {sentimiento}")
+if sentimiento > 0.1:
+    print("IA: Detecto una energia muy positiva.")
+elif sentimiento < -0.1:
+    print("IA: Parece que no es un buen momento. Animo!")
+else:
+    print("IA: Te noto en un estado neutral.")
+
+print(f"Puntuacion: {sentimiento}")
