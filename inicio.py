@@ -8,8 +8,8 @@ traductor = Translator()
 
 # Funcion para que la IA hable
 def hablar(texto):
-    # Usamos espeak con sox para redirigir el audio al altavoz
-    os.system(f'espeak -v es "{texto}" --stdout | play -')
+    # Generamos el audio y lo reproducimos con mpv
+    os.system(f'espeak -v es "{texto}" --stdout | mpv -')
 
 print("--- IA sin Fronteras: Analizador de voz ---")
 hablar("Hola. Como te sientes hoy?")
