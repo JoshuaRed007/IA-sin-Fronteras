@@ -8,12 +8,15 @@ traductor = Translator()
 
 # Funcion para que la IA hable
 def hablar(texto):
-    # Usamos os.system para llamar a espeak desde Termux
-    os.system(f'espeak -v es "{texto}"')
+    # Usamos espeak con sox para redirigir el audio al altavoz
+    os.system(f'espeak -v es "{texto}" --stdout | play -')
 
 print("--- IA sin Fronteras: Analizador de voz ---")
 hablar("Hola. Como te sientes hoy?")
+
+# *** ESTA ES LA LINEA QUE FALTABA ***
 frase_original = input("¿Cómo te sientes hoy? (Cualquier idioma): ")
+# *************************************
 
 # 1. Traduccion interna
 traduccion = traductor.translate(frase_original, dest='en')
